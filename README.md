@@ -58,7 +58,9 @@ A aplicação suporta os seguintes endpoints:
 
 - Para obter os produtores com o maior e o menor intervalo entre prêmios consecutivos:
   ```
-  curl -X 'GET' \ 'http://localhost:8080/producers/intervals' \ -H 'accept: application/json'
+  curl -X 'GET' \
+     'http://localhost:8080/producers/intervals' \
+     -H 'accept: application/json'
   ```
 
 
