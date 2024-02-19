@@ -32,7 +32,7 @@ A aplicação suporta os seguintes endpoints:
 
 ### Exemplos de Uso
 
-#### cURL
+#### CURL
 
 - Adicionar um novo filme:
   ```
