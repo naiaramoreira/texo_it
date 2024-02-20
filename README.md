@@ -19,6 +19,14 @@ Este projeto é uma API RESTful desenvolvida com FastAPI.
    ```
    Este comando irá construir a imagem Docker da aplicação e iniciar o container.
 
+### Executar Testes
+
+Execute o comando para construir e iniciar o container de teste:
+   ```
+   docker build -f Dockerfile.test -t app-tests .
+   docker run --rm app-tests
+   ```
+
 ## Endpoints
 
 A aplicação suporta os seguintes endpoints:
@@ -32,7 +40,7 @@ A aplicação suporta os seguintes endpoints:
 
 ### Exemplos de Uso
 
-#### CURL
+#### cURL
 
 - Adicionar um novo filme:
   ```

@@ -64,7 +64,7 @@ def calculate_intervals():
 
     winners_df = movies_df[movies_df['winner'] == 'yes'].copy()
     winners_df['producers'] = winners_df['producers'].str.split(',| and ')
-    winners_expanded = movies_df.explode('producers').reset_index(drop=True)
+    winners_expanded = winners_df.explode('producers').reset_index(drop=True)
     winners_expanded['producers'] = winners_expanded['producers'].str.strip()
     winners_expanded = winners_expanded.sort_values(['producers', 'year'])
     winners_expanded['previous_win'] = winners_expanded.groupby('producers')['year'].shift(1)
@@ -81,29 +81,12 @@ def calculate_intervals():
         "max": max_intervals[['producers', 'interval', 'previous_win', 'year']].to_dict('records')
     }
     
-    # Ajustando as chaves dos dicionários
     for entry in result['min'] + result['max']:
         entry['interval'] = int(entry['interval'])
         entry['previousWin'] = int(entry['previous_win'])
         entry['followingWin'] = int(entry.pop('year'))
     
     return result
-
-    '''
-    min_interval = winners_expanded[winners_expanded['interval'] > 0].nsmallest(1, 'interval')
-    max_interval = winners_expanded[winners_expanded['interval'] > 0].nlargest(1, 'interval')
-
-    result = {
-        "min": min_interval[['producers', 'interval', 'previous_win', 'year']].to_dict('records'),
-        "max": max_interval[['producers', 'interval', 'previous_win', 'year']].to_dict('records')
-    }
-
-    for entry in result['min'] + result['max']:
-        entry['previousWin'] = entry.pop('previous_win')
-        entry['followingWin'] = entry.pop('year')
-
-    return result
-    '''
 
 def load_movies_from_csv():
     with open('/app/movielist.csv', 'r', encoding='utf-8') as file:
